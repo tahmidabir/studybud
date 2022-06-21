@@ -1,7 +1,43 @@
 from django.shortcuts import render,redirect
+from django.contrib import messages
 from django.db.models import Q #make search easier
+from django.contrib.auth.models import User #built in user
+from django.contrib.auth import authenticate,login,logout
 from .models import Room,Topic
 from .forms import RoomForm #create form
+
+
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            user=User.objects.get(username=username)
+        # django flash messages
+        except:
+            messages.error(request,'User does not exist')
+
+        user=authenticate(request,username=username,password=password)
+
+        if user is not None:
+            login(request,user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Username or password does not exist')
+
+    context = {}
+    return render(request, 'base/login_register.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
+
+
+
+
+
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q')!=None else ''
