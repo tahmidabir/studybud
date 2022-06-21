@@ -21,6 +21,10 @@ class Room(models.Model):
     updated = models.DateTimeField(auto_now=True)  # auto_now updates everytime it got updated
     created = models.DateTimeField(auto_now_add=True)  # auto_mow_add only update once while updating
 
+    # ordering newest first
+    class Meta:
+        ordering = ['-updated','-created']
+
     def __str__(self):
         return self.name
 
