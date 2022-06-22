@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q #make search easier
 from django.contrib.auth.models import User #built in user
 from django.contrib.auth import authenticate,login,logout
-from .models import Room,Topic
+from .models import Room,Topic,Message
 from .forms import RoomForm #create form
 from django.contrib.auth.forms import UserCreationForm
 
@@ -85,7 +85,18 @@ def home(request):
 
 def room(request,pk):
     room=Room.objects.get(id=pk)
-    context={'room':room}
+    room_messages = room.message_set.all().order_by('-created')
+
+    if request.method == 'POST':
+        messages = Message.objects.create(
+            user =  request.user,
+            room = room,
+            body = request.POST.get('body')
+
+        )
+        return redirect('room', pk=room.id)
+
+    context={'room':room,'room_messages': room_messages}
     return render(request, 'base/room.html',context)
 
 @login_required(login_url='login')
