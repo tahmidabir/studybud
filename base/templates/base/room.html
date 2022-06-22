@@ -2,6 +2,23 @@
 {% extends 'main.html'%}
 
 {% block content %}
+<style>
+    .room-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+
+</style>
+
+
+<div class="room-container">
+    <div>
+
+
+
+
+<h5>@{{room.host}}</h5>
+
 <h1>{{room.name}}</h1><br>
 
 <p>{{room.description}}</p>
@@ -32,5 +49,18 @@
 
 </div>
 {%endif%}
+     </div>
 
+    <div>
+        <h3>Participants</h3>
+        <hr>
+        {% for user in participants%}
+        <p>{{user.username}}</p>
+
+        {%endfor%}
+
+
+
+    </div>
+</div>
 {% endblock %}
