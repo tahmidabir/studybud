@@ -16,6 +16,7 @@
 
         <!-- Room List Start -->
         <div class="roomList">
+
           <div class="mobile-menu">
             <form action="{% url 'home' %}" method="GET" class="header__search">
               <label>
@@ -29,7 +30,7 @@
               </label>
             </form>
             <div class="mobile-menuItems">
-              <a class="btn btn--main btn--pill" href="#">Browse Topics</a>
+              <a class="btn btn--main btn--pill" href="{% url 'topics' %}">Browse Topics</a>
               <a class="btn btn--main btn--pill" href="#">Recent Activities</a>
             </div>
           </div>
