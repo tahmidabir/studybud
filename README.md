@@ -45,6 +45,16 @@ A registered user can create a room/ post regarding the topic he wants to discus
 Ones profile can be observed where his profile pic, Bio and activities are preserved.
 <img src="screenshots/5.jpg" height="400" width ="800">
 
+## Edit Profile Page
+Ones can edit his profile while logging in.
+<img src="screenshots/6.jpg" height="400" width ="800">
+
+
+## Mobile View
+Our website is also mobile responsive
+
+<img src="screenshots/7.jpg" height="500" width ="300" >
+
 
 
 
